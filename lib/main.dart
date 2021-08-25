@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 
 
-
-part 'main.g.dart';
-
-class Repro = ReproBase with _$Repro;
-
-abstract class ReproBase with Store {
-  @observable
+class Repro  {
   var tabIcons = [Icon(Icons.directions_car, color: Colors.black,), Icon(Icons.directions_transit, color: Colors.black), Icon(Icons.directions_bike, color: Colors.black)];
-
 }
-
 
 void main() {
 
@@ -40,7 +31,7 @@ class _TabBarDemoState extends State<TabBarDemo> {
       home: DefaultTabController(
         length: repro.tabIcons.length,
         child: Scaffold(
-          extendBodyBehindAppBar: true, // comment this out and the error goes away
+          // extendBodyBehindAppBar: true, // comment this out and the error goes away
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: const Text('Tabs Demo'),
@@ -57,7 +48,7 @@ class _TabBarDemoState extends State<TabBarDemo> {
               ),
             child: Stack(
               children: [
-                Tabsies(),
+                TabsForRepro(),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Padding(
@@ -85,14 +76,14 @@ class _TabBarDemoState extends State<TabBarDemo> {
 }
 
 
-class Tabsies extends StatefulWidget {
-  const Tabsies({Key? key}) : super(key: key);
+class TabsForRepro extends StatefulWidget {
+  const TabsForRepro({Key? key}) : super(key: key);
 
   @override
-  _TabsiesState createState() => _TabsiesState();
+  _TabsForReproState createState() => _TabsForReproState();
 }
 
-class _TabsiesState extends State<Tabsies> {
+class _TabsForReproState extends State<TabsForRepro> {
   @override
   Widget build(BuildContext context) {
     var repro = Provider.of<Repro>(context);
